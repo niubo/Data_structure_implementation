@@ -15,20 +15,21 @@ int main(int argc ,char *argv[])
 	t->item =1;
 	t->next =t;
 	for(i=2;i<=N;i++)
-	 {
-	 x= (x->next =malloc(sizeof *x));
-	 x->item =i;
-	 x->next =t;
-	 }
-     while(x != x->next)	
-	 {
-	    for(i=1;i<M;i++)
-	     {
-			 x= x->next;
-	     }
-		x->next = x->next->next;
-		N--;
-	 }
-	 printf("%d\n",x->item);
+	{
+	  x= (x->next =malloc(sizeof *x));
+	  x->item =i;
+	  x->next =t;
+	}
+    while(x != x->next)	
+	{
+	  for(i=1;i<M;i++)
+	   {
+	    x= x->next;
+	   }
+	  t=x->next;
+	  x->next = t->next;
+	  free(t);
+	  N--;
+	}
+	printf("the last number is %d\n",x->item);
 }
-
